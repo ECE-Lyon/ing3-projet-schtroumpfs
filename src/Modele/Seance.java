@@ -6,6 +6,12 @@ public class Seance {
     private int nbPlacesLibres;
     private String date;
 
+    private Film film;
+
+    public Seance(){
+
+    }
+
     // GETTER ET SETTER xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
     public String getHoraire() {
