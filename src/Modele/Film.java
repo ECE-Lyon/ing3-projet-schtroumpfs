@@ -5,19 +5,17 @@ public class Film {
     // ATTRIBUTS ET CONSTRUCTEUR xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
     private String nom;
-    public int nbPlaces;
     public String dateSortie;
-    public String heure;
 
 
-    public enum GenreFilm{FAMILY, ACTION,
+    public enum GenreFilm {
+        FAMILY, ACTION,
     }
 
     private GenreFilm genreFilm;
 
-    public Film(){
+    public Film() {
     }
-
 
 
     // GETTER ET SETTER xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -28,14 +26,6 @@ public class Film {
 
     public void setNom(String nom) {
         this.nom = nom;
-    }
-
-    public int getNbPlaces() {
-        return nbPlaces;
-    }
-
-    public void setNbPlaces(int nbPlaces) {
-        this.nbPlaces = nbPlaces;
     }
 
     public String getDateSortie() {
@@ -53,15 +43,9 @@ public class Film {
     public void setGenreFilm(GenreFilm genreFilm) {
         this.genreFilm = genreFilm;
     }
-
-    public String getHeure() {
-        return heure;
-    }
-
-    public void setHeure(String heure) {
-        this.heure = heure;
-    }
 }
+
+
 
 
 
