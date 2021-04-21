@@ -13,16 +13,18 @@ public class Film {
     public enum GenreFilm{FAMILY, ACTION,
     }
 
-    GenreFilm genreFilm;
+    private GenreFilm genreFilm;
 
     public Film(){
     }
 
+
+
+    // GETTER ET SETTER xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
     public String getNom() {
         return nom;
     }
-
-    // GETTER ET SETTER xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
     public void setNom(String nom) {
         this.nom = nom;
