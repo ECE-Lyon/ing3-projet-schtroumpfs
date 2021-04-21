@@ -1,4 +1,4 @@
-
+package Modele;
 
 public class Customers {
     //ATTRIBUT ET CONSTRUCTEUR//

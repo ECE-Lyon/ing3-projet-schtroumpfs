@@ -1,5 +1,6 @@
+package Modele;
 
-
+import Modele.Customers;
 
 public class MemberCustomers extends Customers {
 
