@@ -13,7 +13,7 @@ public class Film {
     }
 
     private GenreFilm genreFilm;
-
+    private Seance seance;
     public Film() {
     }
 
