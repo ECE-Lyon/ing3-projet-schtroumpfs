@@ -10,6 +10,7 @@ public class MemberCustomers extends Customers {
         SENIOR,REGULAR,CHILDREN
     }
     private String login;
+    private String password;
     private MemberType type;
 
     public MemberCustomers(){
@@ -38,5 +39,17 @@ public class MemberCustomers extends Customers {
 
     public MemberType getType() {
         return type;
+    }
+
+    public void setType(MemberType type) {
+        this.type = type;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
