@@ -6,7 +6,6 @@ public class Film {
 
     private String nom;
     public int nbPlaces;
-    public float price;
     public String dateSortie;
     public String heure;
 
@@ -35,14 +34,6 @@ public class Film {
 
     public void setNbPlaces(int nbPlaces) {
         this.nbPlaces = nbPlaces;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
     }
 
     public String getDateSortie() {
