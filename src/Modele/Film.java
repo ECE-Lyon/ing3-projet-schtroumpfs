@@ -9,7 +9,7 @@ public class Film {
 
 
     public enum GenreFilm {
-        FAMILY, ACTION,
+        FAMILY, ACTION, COMEDY
     }
 
     private GenreFilm genreFilm;
