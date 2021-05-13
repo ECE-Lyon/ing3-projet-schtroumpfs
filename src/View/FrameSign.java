@@ -22,32 +22,38 @@ public class FrameSign extends JFrame {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Connection :");
-        this.setSize(1200, 800);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLayout(null);
 
+
         JPanel panelId = new JPanel();
-        panelId.setBounds(400,100,300,50);
+        panelId.setLayout(new GridLayout(2,1));     //On fait une grille pour aligner les deux champs
+        panelId.setBounds(600,100,300,100);
         panelId.setBackground(Color.CYAN);
+
+        //premier champs
         JLabel label1 = new JLabel("Identifiant : ");
         panelId.add(label1);
         panelId.add(loginField);
+
+        //deuxieme champs
+        JLabel label2 = new JLabel("Mot de passe : ");
+        panelId.add(label2);
+        panelId.add(passwordField);
+
+        //ajout des deux champs
         this.add(panelId);
 
-        JPanel panelMdp = new JPanel();
-        panelMdp.setBounds(710,100,300,50);
-        panelMdp.setBackground(Color.CYAN);
-        JLabel label2 = new JLabel("Mot de passe : ");
-        panelMdp.add(label2);
-        panelMdp.add(passwordField);
-        this.add(panelMdp);
-
+        //on ajoute maintenant des boutons pour passer à la page suivante, on fait une grille pour les memes raisons
         JPanel panelBouton = new JPanel();
-        panelBouton.setBounds(500,270,360,40);
+        panelBouton.setLayout(new GridLayout(2,1));
+        panelBouton.setBounds(600,220,300,100);
         panelBouton.setBackground(Color.BLACK);
         ButtonConnec conn = new ButtonConnec();
         panelBouton.add(conn);
         ButtonSans sans = new ButtonSans();
         panelBouton.add(sans);
+        panelBouton.setAlignmentX(JPanel.CENTER_ALIGNMENT);
         this.add(panelBouton);
 
 
@@ -62,7 +68,7 @@ public class FrameSign extends JFrame {
     public class ButtonConnec extends JButton {
 
         public ButtonConnec(){
-            setText("Connection");
+            setText("Se connecter");
             addActionListener(new ActionListener() {
 
                 @Override
@@ -92,7 +98,7 @@ public class FrameSign extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     FrameFilm f2 = new FrameFilm();
-                    f2.setVisible(true);;
+                    f2.setVisible(true);
 
                 }
             });

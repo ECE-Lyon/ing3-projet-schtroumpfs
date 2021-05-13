@@ -18,7 +18,7 @@ public class FrameFilm extends JFrame {
     FrameFilm() {
 
         this.setTitle("Choisir le film :");
-        this.setSize(1200, 800);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLayout(null);
 
         ArrayList<String> jaquettes = recherche.recupAllFilms();
@@ -31,21 +31,10 @@ public class FrameFilm extends JFrame {
         for (String nomImage : jaquettes){
             String imgAdr = "imagesFilms\\" + nomImage;
             ImageIcon image = new ImageIcon(imgAdr);
-            JLabel label = new JLabel(image, JLabel.CENTER);
+            JLabel label = new JLabel(image, JLabel.TRAILING);
             panelIm.add(label);
         }
         this.add(panelIm);
-
-
-        /*JLabel label1 = new JLabel(im1, JLabel.CENTER);
-        panelIm.add(label1);
-        JLabel label2 = new JLabel(im2, JLabel.CENTER);
-        panelIm.add(label2);
-        JLabel label3 = new JLabel(im3, JLabel.CENTER);
-        panelIm.add(label3);
-        this.add(panelIm);
-
-         */
 
         JPanel panelBout = new JPanel();
         panelBout.setBounds(500,450,360,40);
