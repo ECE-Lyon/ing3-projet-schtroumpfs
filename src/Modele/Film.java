@@ -4,38 +4,31 @@ public class Film {
 
     // ATTRIBUTS ET CONSTRUCTEUR xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-    private String nom;
-    public int nbPlaces;
+    private String titre;
     public String dateSortie;
-    public String heure;
+    public int id;
 
 
-    public enum GenreFilm{FAMILY, ACTION,
+    public enum Genre {
+        FAMILY, ACTION, COMEDY
     }
 
-    private GenreFilm genreFilm;
+    private Genre genreFilm;
+    private Seance seance;
 
-    public Film(){
+    public Film() {
     }
-
 
 
     // GETTER ET SETTER xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-    public String getNom() {
-        return nom;
+
+    public String getTitre() {
+        return titre;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public int getNbPlaces() {
-        return nbPlaces;
-    }
-
-    public void setNbPlaces(int nbPlaces) {
-        this.nbPlaces = nbPlaces;
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
     public String getDateSortie() {
@@ -46,24 +39,27 @@ public class Film {
         this.dateSortie = dateSortie;
     }
 
-    public GenreFilm getGenreFilm() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Genre getGenreFilm() {
         return genreFilm;
     }
 
-    public void setGenreFilm(GenreFilm genreFilm) {
+    public void setGenreFilm(Genre genreFilm) {
         this.genreFilm = genreFilm;
     }
 
-    public String getHeure() {
-        return heure;
+    public Seance getSeance() {
+        return seance;
     }
 
-    public void setHeure(String heure) {
-        this.heure = heure;
+    public void setSeance(Seance seance) {
+        this.seance = seance;
     }
 }
-
-
-
-
-
