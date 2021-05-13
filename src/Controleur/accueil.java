@@ -3,6 +3,7 @@ package Controleur;
 import Modele.MemberCustomers;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class accueil {
 
@@ -47,5 +48,23 @@ public class accueil {
         return new MemberCustomers(type);
     }
 
+    //methode pour recuperer l'ensemble des films pour les afficher ensuite (autre methode dans vue)
+    public ArrayList<String> recupAllFilms(){
+        ArrayList<String> list = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")) {
+            try (Statement statement = connection.createStatement()) {
+                try (ResultSet resultSet = statement.executeQuery("SELECT IMAGE FROM FILMS")) {
+                    while (resultSet.next()) {
+                        String result = resultSet.getString("IMAGE");
+                        list.add(result);
+                    }
+                }
 
+            }
+        } catch (SQLException exception) {
+            System.out.println("IL Y A EU UNE ERREUR");
+            exception.printStackTrace();
+        }
+        return list;
+    }
 }
