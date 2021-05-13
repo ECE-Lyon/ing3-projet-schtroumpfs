@@ -4,8 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class recherche {
+
     //methode pour recuperer l'ensemble des films pour les afficher ensuite (autre methode dans vue)
-    public ArrayList<String> recupAllFilms(){
+    public static ArrayList<String> recupAllFilms(){
         ArrayList<String> list = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")) {
             try (Statement statement = connection.createStatement()) {

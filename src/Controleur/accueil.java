@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class accueil {
 
     //methode pour verifier si l'identifiant et le mot de passe inscrits sont dans la base de donnees et sont raccordes
-    public boolean verifIdentification(String id, String password){
+    public static boolean verifIdentification(String id, String password){
         try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")){
             try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM CLIENTS WHERE PSEUDO LIKE ?")) {
                 statement.setString(1, id);
@@ -28,7 +28,7 @@ public class accueil {
     }
 
     //methode qui permettra de gerer la fidelite d'un client
-    public MemberCustomers recupFidelite(String id, String password){
+    public static MemberCustomers recupFidelite(String id, String password){
         MemberCustomers.MemberType type = null;
         try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")){
             try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM CLIENTS WHERE PSEUDO LIKE ?")) {

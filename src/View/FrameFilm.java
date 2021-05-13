@@ -1,9 +1,12 @@
 package View;
 
+import Controleur.recherche;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------
@@ -18,22 +21,31 @@ public class FrameFilm extends JFrame {
         this.setSize(1200, 800);
         this.setLayout(null);
 
-
-        ImageIcon im1 = new ImageIcon("C:\\Users\\Robin\\Downloads\\spider.jpg");
-        ImageIcon im2 = new ImageIcon("C:\\Users\\Robin\\Downloads\\batman.jpg");
-        ImageIcon im3 = new ImageIcon("C:\\Users\\Robin\\Downloads\\titanic.jpg");
+        ArrayList<String> jaquettes = recherche.recupAllFilms();
 
 
         JPanel panelIm = new JPanel();
         panelIm.setBounds(350,0,900,400);
         panelIm.setBackground(Color.CYAN);
-        JLabel label1 = new JLabel(im1, JLabel.CENTER);
+
+        for (String nomImage : jaquettes){
+            String imgAdr = "imagesFilms\\" + nomImage;
+            ImageIcon image = new ImageIcon(imgAdr);
+            JLabel label = new JLabel(image, JLabel.CENTER);
+            panelIm.add(label);
+        }
+        this.add(panelIm);
+
+
+        /*JLabel label1 = new JLabel(im1, JLabel.CENTER);
         panelIm.add(label1);
         JLabel label2 = new JLabel(im2, JLabel.CENTER);
         panelIm.add(label2);
         JLabel label3 = new JLabel(im3, JLabel.CENTER);
         panelIm.add(label3);
         this.add(panelIm);
+
+         */
 
         JPanel panelBout = new JPanel();
         panelBout.setBounds(500,450,360,40);

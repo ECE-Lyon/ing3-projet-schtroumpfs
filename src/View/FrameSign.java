@@ -1,5 +1,7 @@
 package View;
 
+import Controleur.accueil;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,13 +14,10 @@ import java.awt.event.KeyEvent;
 //--------------------------------------------------------------------------------------------------------------
 public class FrameSign extends JFrame {
 
-    public static String passwordSQL = "oui";
-    public static String identifiantSQL = "roro";
-
     public static JPasswordField passwordField = new JPasswordField("Password");
     public static TextField loginField = new TextField("NomUtilisateur");
 
-
+    //page d'accueil pour se connecter ou non
     public FrameSign() {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,6 +58,7 @@ public class FrameSign extends JFrame {
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 
+    //bouton pour verifier la connexion (test id et password)
     public class ButtonConnec extends JButton {
 
         public ButtonConnec(){
@@ -67,7 +67,7 @@ public class FrameSign extends JFrame {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if(FrameSign.passwordSQL.equals(FrameSign.passwordField.getText())&&FrameSign.identifiantSQL.equals(FrameSign.loginField.getText())){
+                    if(accueil.verifIdentification(FrameSign.loginField.getText(), FrameSign.passwordField.getText())){
                         FrameFilm f2 = new FrameFilm();
                         f2.setVisible(true);;}
 
@@ -82,6 +82,7 @@ public class FrameSign extends JFrame {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    //bouton pour acceder aux films sans se connecter
     public class ButtonSans extends JButton {
 
         public ButtonSans(){
