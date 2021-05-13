@@ -89,4 +89,25 @@ public class accueil {
         }
         return list;
     }
+
+    //recherche pour les films sur la duree
+    public ArrayList<String> rechercheDuree(int time){
+        ArrayList<String> list = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")){
+            try (PreparedStatement statement = connection.prepareStatement("SELECT IMAGE FROM FILMS WHERE DUREE >= ?")) {
+                statement.setInt(1, time);
+                try (ResultSet resultSet = statement.executeQuery()){
+                    while (resultSet.next()){
+                        String result = resultSet.getString("IMAGE");
+                        list.add(result);
+                    }
+                }
+
+            }
+        } catch (SQLException exception) {
+            System.out.println("IL Y A EU UNE ERREUR");
+            exception.printStackTrace();
+        }
+        return list;
+    }
 }
