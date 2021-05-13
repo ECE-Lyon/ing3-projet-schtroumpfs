@@ -94,7 +94,7 @@ public class accueil {
     public ArrayList<String> rechercheDuree(int time){
         ArrayList<String> list = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")){
-            try (PreparedStatement statement = connection.prepareStatement("SELECT IMAGE FROM FILMS WHERE DUREE >= ?")) {
+            try (PreparedStatement statement = connection.prepareStatement("SELECT IMAGE FROM FILMS WHERE DUREE <= ?")) {
                 statement.setInt(1, time);
                 try (ResultSet resultSet = statement.executeQuery()){
                     while (resultSet.next()){
