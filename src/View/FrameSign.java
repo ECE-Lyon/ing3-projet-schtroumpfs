@@ -49,23 +49,21 @@ public class FrameSign extends JFrame {
         panelBouton.setLayout(new GridLayout(2,1));
         panelBouton.setBounds(600,220,300,100);
         panelBouton.setBackground(Color.BLACK);
+
         ButtonConnec conn = new ButtonConnec();
         panelBouton.add(conn);
+
         ButtonSans sans = new ButtonSans();
         panelBouton.add(sans);
-        panelBouton.setAlignmentX(JPanel.CENTER_ALIGNMENT);
+
         this.add(panelBouton);
-
-
-
-
 
     }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 
     //bouton pour verifier la connexion (test id et password)
-    public class ButtonConnec extends JButton {
+    public static class ButtonConnec extends JButton {
 
         public ButtonConnec(){
             setText("Se connecter");
@@ -75,21 +73,21 @@ public class FrameSign extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     if(accueil.verifIdentification(FrameSign.loginField.getText(), FrameSign.passwordField.getText())){
                         FrameFilm f2 = new FrameFilm();
-                        f2.setVisible(true);;}
+                        f2.setVisible(true);
+                    }
 
-                    else{JOptionPane.showMessageDialog(ButtonConnec.this, "Erreur de mot de passe ou d'identifiant"); }
-
+                    else{
+                        JOptionPane.showMessageDialog(ButtonConnec.this, "Erreur de mot de passe ou d'identifiant");
+                    }
                 }
             });
-
         }
-
     }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     //bouton pour acceder aux films sans se connecter
-    public class ButtonSans extends JButton {
+    public static class ButtonSans extends JButton {
 
         public ButtonSans(){
             setText("Continuer sans se connecter");
@@ -99,12 +97,9 @@ public class FrameSign extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     FrameFilm f2 = new FrameFilm();
                     f2.setVisible(true);
-
                 }
             });
-
         }
-
     }
 
 

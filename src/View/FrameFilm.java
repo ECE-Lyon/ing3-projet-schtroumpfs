@@ -25,8 +25,8 @@ public class FrameFilm extends JFrame {
 
 
         JPanel panelIm = new JPanel();
-        panelIm.setBounds(350,0,900,400);
-        panelIm.setBackground(Color.CYAN);
+        panelIm.setBounds(0,0,1600,800);
+        panelIm.setBackground(Color.WHITE);
 
         for (String nomImage : jaquettes){
             String imgAdr = "imagesFilms\\" + nomImage;
@@ -57,7 +57,7 @@ public class FrameFilm extends JFrame {
     }
 
     //-----------------------------------------------------------------------------------------------------------------
-    public class ButtonFilm extends JButton {
+    public static class ButtonFilm extends JButton {
 
         public ButtonFilm(){
             setText("Valider");
