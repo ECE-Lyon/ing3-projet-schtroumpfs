@@ -25,7 +25,7 @@ public class FrameFilm extends JFrame {
 
 
         JPanel panelIm = new JPanel();
-        panelIm.setBounds(0,0,1600,400);
+        panelIm.setBounds(-20,0,1600,400);
         panelIm.setBackground(Color.RED);
 
         JPanel panelBout = new JPanel();

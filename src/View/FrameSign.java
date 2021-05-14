@@ -1,6 +1,8 @@
 package View;
 
 import Controleur.accueil;
+import Modele.Customers;
+import Modele.MemberCustomers;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,6 +49,7 @@ public class FrameSign extends JFrame {
         //ajout des deux champs
         this.add(panelId);
 
+        //partie pour se creer un compte
         JPanel panelNew = new JPanel();
         panelNew.setLayout(new GridLayout(5,1));
         panelNew.setBounds(600, 400, 300, 200);
@@ -67,7 +70,7 @@ public class FrameSign extends JFrame {
         panelBouton.setBounds(600,220,300,100);
         panelBouton.setBackground(Color.BLACK);
 
-        ButtonConnec conn = new ButtonConnec();
+        ButtonConnec conn = new ButtonConnec(loginField.getText(), passwordField.getUIClassID());
         panelBouton.add(conn);
 
         ButtonSans sans = new ButtonSans();
@@ -84,7 +87,7 @@ public class FrameSign extends JFrame {
     //bouton pour verifier la connexion (test id et password)
     public static class ButtonConnec extends JButton {
 
-        public ButtonConnec(){
+        public ButtonConnec(String id, String password){
             setText("Se connecter");
             addActionListener(new ActionListener() {
 
@@ -93,6 +96,7 @@ public class FrameSign extends JFrame {
                     if(accueil.verifIdentification(FrameSign.loginField.getText(), FrameSign.passwordField.getText())){
                         FrameFilm f2 = new FrameFilm();
                         f2.setVisible(true);
+                        MemberCustomers client = accueil.recupFidelite(id, password);
                     }
 
                     else{

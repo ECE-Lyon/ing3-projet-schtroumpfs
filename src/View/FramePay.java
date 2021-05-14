@@ -17,8 +17,8 @@ public class FramePay extends JFrame {
 
     public FramePay() {
 
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("Choix séance :");
-        this.setSize(1200, 800);
         this.setLayout(null);
 
 
@@ -44,7 +44,7 @@ public class FramePay extends JFrame {
         JPanel panelNb = new JPanel();
         panelNb.setBounds(500,450,500,40);
         panelNb.setBackground(Color.orange);
-        JLabel labelPlace = new JLabel("Saisir nombre de place.s voulue.s : ");
+        JLabel labelPlace = new JLabel("Saisir nombre de place(s) voulue(s) : ");
         panelNb.add(labelPlace);
         panelNb.add(labelSaisiePlaces);
         ButtonSeance bouton = new ButtonSeance();
