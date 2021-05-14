@@ -5,11 +5,13 @@ public class Seance {
     private String horaire;
     private int nbPlacesLibres;
     private String date;
+    private int salle;
 
-    private Film film;
 
-    public Seance(){
-
+    public Seance(int salle, int placesLibres, String horaires){
+        this.salle = salle;
+        this.nbPlacesLibres = placesLibres;
+        this.horaire = horaires;
     }
 
     // GETTER ET SETTER xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -36,5 +38,13 @@ public class Seance {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getSalle() {
+        return salle;
+    }
+
+    public void setSalle(int salle) {
+        this.salle = salle;
     }
 }
