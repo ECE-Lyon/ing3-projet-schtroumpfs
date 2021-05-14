@@ -25,31 +25,26 @@ public class FrameFilm extends JFrame {
 
 
         JPanel panelIm = new JPanel();
-        panelIm.setBounds(0,0,1600,500);
+        panelIm.setBounds(0,0,1600,400);
         panelIm.setBackground(Color.RED);
+
+        JPanel panelBout = new JPanel();
+        panelBout.setBounds(0,400,1600,400);
+        panelBout.setBackground(Color.orange);
+        ButtonFilm bouton = new ButtonFilm();
+        ButtonGroup group = new ButtonGroup();
 
         for (String nomImage : jaquettes){
             String imgAdr = "imagesFilms\\" + nomImage;
             ImageIcon image = new ImageIcon(imgAdr);
             JLabel label = new JLabel(image, JLabel.CENTER);
             panelIm.add(label);
+            JRadioButton b = new JRadioButton(nomImage.split("\\.")[0]);  //ajout des boutons dont le nom est le titre recupéré dans la base de donnée
+            group.add(b);
+            panelBout.add(b);
         }
-        this.add(panelIm);
 
-        JPanel panelBout = new JPanel();
-        panelBout.setBounds(500,450,360,40);
-        panelBout.setBackground(Color.orange);
-        ButtonFilm bouton = new ButtonFilm();
-        ButtonGroup group = new ButtonGroup();
-        JRadioButton s = new JRadioButton("Super-Man");
-        JRadioButton b = new JRadioButton("Batman");
-        JRadioButton t = new JRadioButton("Titanic");
-        group.add(s);
-        panelBout.add(s);
-        group.add(b);
-        panelBout.add(b);
-        group.add(t);
-        panelBout.add(t);
+        this.add(panelIm);
         ButtonFilm boutonFilm = new ButtonFilm();
         panelBout.add(boutonFilm);
         this.add(panelBout);
