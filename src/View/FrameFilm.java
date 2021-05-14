@@ -25,13 +25,13 @@ public class FrameFilm extends JFrame {
 
 
         JPanel panelIm = new JPanel();
-        panelIm.setBounds(0,0,1600,800);
-        panelIm.setBackground(Color.WHITE);
+        panelIm.setBounds(0,0,1600,500);
+        panelIm.setBackground(Color.RED);
 
         for (String nomImage : jaquettes){
             String imgAdr = "imagesFilms\\" + nomImage;
             ImageIcon image = new ImageIcon(imgAdr);
-            JLabel label = new JLabel(image, JLabel.TRAILING);
+            JLabel label = new JLabel(image, JLabel.CENTER);
             panelIm.add(label);
         }
         this.add(panelIm);

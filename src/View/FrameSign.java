@@ -7,8 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-
-
+import java.sql.*;
 
 
 //--------------------------------------------------------------------------------------------------------------
@@ -16,6 +15,10 @@ public class FrameSign extends JFrame {
 
     public static JPasswordField passwordField = new JPasswordField("Password");
     public static TextField loginField = new TextField("NomUtilisateur");
+    public static JPasswordField nouveauMdpField = new JPasswordField("MDP");
+    public static TextField nouveauIDField = new TextField("Pseudo");
+    public static TextField nouveauFideliteField = new TextField("Fidelite");
+
 
     //page d'accueil pour se connecter ou non
     public FrameSign() {
@@ -44,6 +47,20 @@ public class FrameSign extends JFrame {
         //ajout des deux champs
         this.add(panelId);
 
+        JPanel panelNew = new JPanel();
+        panelNew.setLayout(new GridLayout(5,1));
+        panelNew.setBounds(600, 400, 300, 200);
+        panelNew.setBackground(Color.MAGENTA);
+        JLabel labelCreation = new JLabel("creation de compte : ");
+        panelNew.add(labelCreation);
+        panelNew.add(nouveauMdpField);
+        panelNew.add(nouveauIDField);
+        panelNew.add(nouveauFideliteField);
+        ButtonNew nouveau = new ButtonNew(nouveauIDField.getText(), nouveauIDField.getText(), nouveauFideliteField.getText());
+        nouveau.setSize(300,40);
+        panelNew.add(nouveau);
+        this.add(panelNew);
+
         //on ajoute maintenant des boutons pour passer à la page suivante, on fait une grille pour les memes raisons
         JPanel panelBouton = new JPanel();
         panelBouton.setLayout(new GridLayout(2,1));
@@ -55,6 +72,8 @@ public class FrameSign extends JFrame {
 
         ButtonSans sans = new ButtonSans();
         panelBouton.add(sans);
+
+
 
         this.add(panelBouton);
 
@@ -104,8 +123,32 @@ public class FrameSign extends JFrame {
 
 
 //------------------------------------------------------------------------------------------------------------------------------------
+    public static class ButtonNew extends JButton{
+        public ButtonNew(String pseudo, String mdp, String fidelite){
+            setText("Créer un nouveau compte");
+            addActionListener(new ActionListener() {
 
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")) {
+                        try (Statement statement = connection.createStatement()) {
+                            int resultSet = statement.executeUpdate("INSERT INTO CLIENTS VALUES (pseudo, mdp, fidelite)");
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                    }
+                    catch (SQLException exception) {
+                        System.out.println("IL Y A EU UNE ERREUR");
+                        exception.printStackTrace();
+                }
+                    FrameFilm f2 = new FrameFilm();
+                    f2.setVisible(true);
+                };
+            });
+        }
+}
 
+//------------------------------------------------------------------------------------------------------------------------------------
 
 
 
