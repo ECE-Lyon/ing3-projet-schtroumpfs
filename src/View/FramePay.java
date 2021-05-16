@@ -67,7 +67,7 @@ public class FramePay extends JFrame {
         panelInfos.add(labelDuree);
         panelInfos.add(labelConseils);
 
-        String[] listeGenre = listeInfos.get(0).split(" ");
+        String[] listeGenre = genre.split(" ");
         ArrayList<String> listeConseil = rechercheGenre(listeGenre[0]);
 
         JPanel panelConseil = new JPanel();
@@ -77,17 +77,17 @@ public class FramePay extends JFrame {
         if (listeConseil.size() < 4){
             for (String s : listeConseil) {
                 String adresse = "imagesFilms\\" + s;
-                ImageIcon filmConseil = new ImageIcon(imgAdr);
-                JLabel labelFilmConseil = new JLabel(image, JLabel.CENTER);
-                panelConseil.add(labelImage);
+                ImageIcon filmConseil = new ImageIcon(adresse);
+                JLabel labelFilmConseil = new JLabel(filmConseil, JLabel.CENTER);
+                panelConseil.add(labelFilmConseil);
             }
         }
         else {
             for (int k = 0; k < 4; k++){
                 String adresse = "imagesFilms\\" + listeConseil.get(k);
-                ImageIcon filmConseil = new ImageIcon(imgAdr);
-                JLabel labelFilmConseil = new JLabel(image, JLabel.CENTER);
-                panelConseil.add(labelImage);
+                ImageIcon filmConseil = new ImageIcon(adresse);
+                JLabel labelFilmConseil = new JLabel(filmConseil, JLabel.CENTER);
+                panelConseil.add(labelFilmConseil);
             }
         }
 
