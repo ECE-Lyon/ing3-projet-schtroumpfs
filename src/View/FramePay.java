@@ -37,10 +37,9 @@ public class FramePay extends JFrame {
         panelIm.setBounds(0,0,150,400);
         panelIm.setBackground(Color.RED);
 
-        String imgAdr = "imagesFilms\\" + nomFilm;
+        String imgAdr = "imagesFilms\\" + nomFilm + ".jpg";
         ImageIcon image = new ImageIcon(imgAdr);
         JLabel labelImage = new JLabel(image, JLabel.CENTER);
-        labelImage.setBounds(0,0,200,200);
         panelIm.add(labelImage);
         this.add(panelIm);
         //fin ajout

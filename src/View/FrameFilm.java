@@ -39,14 +39,14 @@ public class FrameFilm extends JFrame {
             JLabel label = new JLabel(image, JLabel.CENTER);
             panelIm.add(label);
 
-            JRadioButton b = new JRadioButton(nomImage.split("\\.")[0]);  //ajout des boutons dont le nom est le titre recupéré dans la base de donnée
+            ButtonFilm b = new ButtonFilm(nomImage.split("\\.")[0]);  //ajout des boutons dont le nom est le titre recupéré dans la base de donnée
             group.add(b);
             panelBout.add(b);
         }
 
         this.add(panelIm);
-        ButtonFilm boutonFilm = new ButtonFilm();
-        panelBout.add(boutonFilm);
+        //ButtonFilm boutonFilm = new ButtonFilm();
+        //panelBout.add(boutonFilm);
         this.add(panelBout);
 
     }
@@ -54,8 +54,8 @@ public class FrameFilm extends JFrame {
     //-----------------------------------------------------------------------------------------------------------------
     public static class ButtonFilm extends JButton {
 
-        public ButtonFilm(){
-            setText("Valider");
+        public ButtonFilm(String nomFilm){
+            setText(nomFilm);
             addActionListener(new ActionListener() {
 
                 @Override
