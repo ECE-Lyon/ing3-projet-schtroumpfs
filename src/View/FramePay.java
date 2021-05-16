@@ -10,7 +10,9 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
+import static Controleur.recherche.recupInfoFilm;
 import static Controleur.seance.recupSeances;
+import static Controleur.recherche.rechercheGenre;
 
 
 //--------------------------------------------------------------------------------------------------------------
@@ -21,57 +23,131 @@ public class FramePay extends JFrame {
 
 
     public FramePay(String nomFilm) {
-
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("Choix séance :");
         this.setLayout(null);
 
-
-        ArrayList<Seance> listeSeances = recupSeances(nomFilm);
-        JPanel panelSean = new JPanel();
-        panelSean.setBounds(150,0,1600,400);
-        panelSean.setBackground(Color.orange);
-
-        //ajjout de la jaquete du film
-        JPanel panelIm = new JPanel();
-        panelIm.setBounds(0,0,150,400);
-        panelIm.setBackground(Color.RED);
+        //ajout de la jaquete du film
+        JPanel panelFilm = new JPanel();
+        panelFilm.setBounds(0,0,150,400);
+        panelFilm.setBackground(Color.RED);
 
         String imgAdr = "imagesFilms\\" + nomFilm + ".jpg";
         ImageIcon image = new ImageIcon(imgAdr);
         JLabel labelImage = new JLabel(image, JLabel.CENTER);
-        panelIm.add(labelImage);
-        this.add(panelIm);
-        //fin ajout
+        panelFilm.add(labelImage);
+        this.add(panelFilm);
+        //fin
 
-        JLabel label1 = new JLabel("Séances disponibles : ");
-        panelSean.add(label1);
-        ButtonGroup group = new ButtonGroup();
-        for (Seance seanceK : listeSeances){
+        //ajout partie supérieure avec des infos
+        JPanel panelInfos = new JPanel();
+        panelInfos.setBounds(150,0,1300,400);
+        panelInfos.setBackground(Color.ORANGE);
+        panelInfos.setLayout(new GridLayout(3,2));
 
+        JLabel labelTitre = new JLabel(nomFilm);
+
+        ArrayList<String> listeInfos = recupInfoFilm(nomFilm);
+        JLabel labelGenre = new JLabel("Genres du film : " + listeInfos.get(0));
+        JLabel labelPrix = new JLabel("Le prix d'une place est : 9€");
+        JLabel labelDuree = new JLabel("Duree du film : " + listeInfos.get(1));
+        JLabel labelConseils = new JLabel("Vous pourriez aussi aimé : ");
+
+        panelInfos.add(labelTitre);
+        panelInfos.add(labelGenre);
+        panelInfos.add(labelPrix);
+        panelInfos.add(labelDuree);
+        panelInfos.add(labelConseils);
+
+        String[] listeGenre = listeInfos.get(0).split("_");
+        ArrayList<String> listeConseil = rechercheGenre(listeGenre[0]);
+
+        JPanel panelConseil = new JPanel();
+        //recuperation des jaquettes de films similaires
+        if (listeConseil.size() < 4){
+            for (String s : listeConseil) {
+                String adresse = "imagesFilms\\" + s + ".jpg";
+                ImageIcon filmConseil = new ImageIcon(imgAdr);
+                JLabel labelFilmConseil = new JLabel(image, JLabel.CENTER);
+                panelConseil.add(labelImage);
+            }
         }
-        JRadioButton s = new JRadioButton("18h00 (13 places)");
-        JRadioButton b = new JRadioButton("20h00 (complet)");
-        JRadioButton t = new JRadioButton("22h00 (2 places)");
-        group.add(s);
-        panelSean.add(s);
-        group.add(b);
-        panelSean.add(b);
-        group.add(t);
-        panelSean.add(t);
-        this.add(panelSean);
+        else {
+            for (int k = 0; k < 4; k++){
+                String adresse = "imagesFilms\\" + listeConseil.get(k) + ".jpg";
+                ImageIcon filmConseil = new ImageIcon(imgAdr);
+                JLabel labelFilmConseil = new JLabel(image, JLabel.CENTER);
+                panelConseil.add(labelImage);
+            }
+        }
+
+        panelInfos.add(panelConseil);
+        this.add(panelInfos);
 
 
-        JPanel panelNb = new JPanel();
-        panelNb.setBounds(500,450,500,40);
-        panelNb.setBackground(Color.orange);
-        JLabel labelPlace = new JLabel("Saisir nombre de place(s) voulue(s) : ");
-        panelNb.add(labelPlace);
-        panelNb.add(labelSaisiePlaces);
-        ButtonSeance bouton = new ButtonSeance();
-        panelNb.add(bouton);
-        panelNb.add(l);
-        this.add(panelNb);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        ArrayList<Seance> listeSeances = recupSeances(nomFilm);
+//        JPanel panelSean = new JPanel();
+//        panelSean.setBounds(150,0,1600,400);
+//        panelSean.setBackground(Color.orange);
+//
+//        //ajjout de la jaquete du film
+//        JPanel panelIm = new JPanel();
+//        panelIm.setBounds(0,0,150,400);
+//        panelIm.setBackground(Color.RED);
+//
+//        String imgAdr = "imagesFilms\\" + nomFilm + ".jpg";
+//        ImageIcon image = new ImageIcon(imgAdr);
+//        JLabel labelImage = new JLabel(image, JLabel.CENTER);
+//        panelIm.add(labelImage);
+//        this.add(panelIm);
+//        //fin ajout
+//
+//        panelSean.add(new JLabel("Une séance coûte 9€"));
+//        JLabel label1 = new JLabel("Séances disponibles : ");
+//        panelSean.add(label1);
+//        ButtonGroup group = new ButtonGroup();
+//        for (Seance seanceK : listeSeances){
+//
+//        }
+//        JRadioButton s = new JRadioButton("18h00 (13 places)");
+//        JRadioButton b = new JRadioButton("20h00 (complet)");
+//        JRadioButton t = new JRadioButton("22h00 (2 places)");
+//        group.add(s);
+//        panelSean.add(s);
+//        group.add(b);
+//        panelSean.add(b);
+//        group.add(t);
+//        panelSean.add(t);
+//        this.add(panelSean);
+//
+//
+//        JPanel panelNb = new JPanel();
+//        panelNb.setBounds(500,450,500,40);
+//        panelNb.setBackground(Color.orange);
+//        JLabel labelPlace = new JLabel("Saisir nombre de place(s) voulue(s) : ");
+//        panelNb.add(labelPlace);
+//        panelNb.add(labelSaisiePlaces);
+//        ButtonSeance bouton = new ButtonSeance();
+//        panelNb.add(bouton);
+//        panelNb.add(l);
+//        this.add(panelNb);
 
     }
 

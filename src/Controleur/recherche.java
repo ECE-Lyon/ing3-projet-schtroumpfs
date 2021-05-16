@@ -2,6 +2,7 @@ package Controleur;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class recherche {
 
@@ -27,7 +28,7 @@ public class recherche {
 
 
     //recherche pour les films sur le genre
-    public ArrayList<String> rechercheGenre(String genre){
+    public static ArrayList<String> rechercheGenre(String genre){
         ArrayList<String> list = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")){
             try (PreparedStatement statement = connection.prepareStatement("SELECT IMAGE FROM FILMS WHERE GENRE CONTAINS ?")) {
@@ -48,7 +49,7 @@ public class recherche {
     }
 
     //recherche pour les films sur la duree
-    public ArrayList<String> rechercheDuree(int time){
+    public static ArrayList<String> rechercheDuree(int time){
         ArrayList<String> list = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")){
             try (PreparedStatement statement = connection.prepareStatement("SELECT IMAGE FROM FILMS WHERE DUREE <= ?")) {
@@ -67,4 +68,29 @@ public class recherche {
         }
         return list;
     }
+
+    //recherche sur le titre et récupération des informations de la table Films
+    public static ArrayList<String> recupInfoFilm(String nomFilm){
+        ArrayList<String> listGenreDuree = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")){
+            try (PreparedStatement statement = connection.prepareStatement("SELECT GENRE, DUREE FROM FILMS WHERE TITRE LIKE ?")) {
+                statement.setString(1, nomFilm.toUpperCase(Locale.ROOT));
+                try (ResultSet resultSet = statement.executeQuery()){
+                    while (resultSet.next()) {
+                        String genre = resultSet.getString("GENRE");
+                        String duree = resultSet.getString("duree");
+                        listGenreDuree.add(genre);
+                        listGenreDuree.add(duree);
+                    }
+                }
+
+            }
+        } catch (SQLException exception) {
+            System.out.println("IL Y A EU UNE ERREUR");
+            exception.printStackTrace();
+        }
+        return listGenreDuree;
+    }
 }
+
+
