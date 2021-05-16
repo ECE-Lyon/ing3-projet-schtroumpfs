@@ -1,11 +1,16 @@
 package View;
 
+import Modele.Seance;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.logging.Level;
+
+import static Controleur.seance.recupSeances;
 
 
 //--------------------------------------------------------------------------------------------------------------
@@ -15,20 +20,37 @@ public class FramePay extends JFrame {
     public static JLabel l = new JLabel();
 
 
-    public FramePay() {
+    public FramePay(String nomFilm) {
 
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("Choix séance :");
         this.setLayout(null);
 
 
-
+        ArrayList<Seance> listeSeances = recupSeances(nomFilm);
         JPanel panelSean = new JPanel();
-        panelSean.setBounds(500,50,500,40);
+        panelSean.setBounds(150,0,1600,400);
         panelSean.setBackground(Color.orange);
+
+        //ajjout de la jaquete du film
+        JPanel panelIm = new JPanel();
+        panelIm.setBounds(0,0,150,400);
+        panelIm.setBackground(Color.RED);
+
+        String imgAdr = "imagesFilms\\" + nomFilm;
+        ImageIcon image = new ImageIcon(imgAdr);
+        JLabel labelImage = new JLabel(image, JLabel.CENTER);
+        labelImage.setBounds(0,0,200,200);
+        panelIm.add(labelImage);
+        this.add(panelIm);
+        //fin ajout
+
         JLabel label1 = new JLabel("Séances disponibles : ");
         panelSean.add(label1);
         ButtonGroup group = new ButtonGroup();
+        for (Seance seanceK : listeSeances){
+
+        }
         JRadioButton s = new JRadioButton("18h00 (13 places)");
         JRadioButton b = new JRadioButton("20h00 (complet)");
         JRadioButton t = new JRadioButton("22h00 (2 places)");

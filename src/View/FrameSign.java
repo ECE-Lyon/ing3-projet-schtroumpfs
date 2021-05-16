@@ -1,14 +1,12 @@
 package View;
 
 import Controleur.accueil;
-import Modele.Customers;
 import Modele.MemberCustomers;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.sql.*;
 
 

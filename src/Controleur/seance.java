@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class seance {
-    public static ArrayList<Seance> recup(String nomFilm){
+    public static ArrayList<Seance> recupSeances(String nomFilm){
         ArrayList<Seance> list = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")){
             try (PreparedStatement statement = connection.prepareStatement("SELECT SALLE, PLACES, HORAIRE FROM SEANCES JOIN FILMS WHERE TITRE LIKE ?")) {

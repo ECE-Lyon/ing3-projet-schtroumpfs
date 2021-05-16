@@ -31,7 +31,6 @@ public class FrameFilm extends JFrame {
         JPanel panelBout = new JPanel();
         panelBout.setBounds(0,400,1600,400);
         panelBout.setBackground(Color.orange);
-        ButtonFilm bouton = new ButtonFilm();
         ButtonGroup group = new ButtonGroup();
 
         for (String nomImage : jaquettes){
@@ -39,6 +38,7 @@ public class FrameFilm extends JFrame {
             ImageIcon image = new ImageIcon(imgAdr);
             JLabel label = new JLabel(image, JLabel.CENTER);
             panelIm.add(label);
+
             JRadioButton b = new JRadioButton(nomImage.split("\\.")[0]);  //ajout des boutons dont le nom est le titre recupéré dans la base de donnée
             group.add(b);
             panelBout.add(b);
@@ -60,9 +60,9 @@ public class FrameFilm extends JFrame {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    FramePay f3 = new FramePay();
+                    String film = e.getActionCommand();
+                    FramePay f3 = new FramePay(film);
                     f3.setVisible(true);
-
 
                 }
             });
