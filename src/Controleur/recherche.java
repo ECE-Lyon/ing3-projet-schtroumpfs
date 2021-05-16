@@ -31,8 +31,8 @@ public class recherche {
     public static ArrayList<String> rechercheGenre(String genre){
         ArrayList<String> list = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")){
-            try (PreparedStatement statement = connection.prepareStatement("SELECT IMAGE FROM FILMS WHERE GENRE CONTAINS ?")) {
-                statement.setString(1, genre);
+            try (PreparedStatement statement = connection.prepareStatement("SELECT IMAGE FROM FILMS WHERE GENRE LIKE ?")) {
+                statement.setString(1, "+" + genre + "+");
                 try (ResultSet resultSet = statement.executeQuery()){
                     while (resultSet.next()){
                         String result = resultSet.getString("IMAGE");
@@ -78,7 +78,7 @@ public class recherche {
                 try (ResultSet resultSet = statement.executeQuery()){
                     while (resultSet.next()) {
                         String genre = resultSet.getString("GENRE");
-                        String duree = resultSet.getString("duree");
+                        String duree = resultSet.getString("DUREE");
                         listGenreDuree.add(genre);
                         listGenreDuree.add(duree);
                     }

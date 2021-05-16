@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.logging.Level;
 
 import static Controleur.recherche.recupInfoFilm;
@@ -41,16 +42,23 @@ public class FramePay extends JFrame {
 
         //ajout partie supérieure avec des infos
         JPanel panelInfos = new JPanel();
-        panelInfos.setBounds(150,0,1300,400);
+        panelInfos.setBounds(150,0,1450,400);
         panelInfos.setBackground(Color.ORANGE);
         panelInfos.setLayout(new GridLayout(3,2));
 
-        JLabel labelTitre = new JLabel(nomFilm);
+        JLabel labelTitre = new JLabel(nomFilm.toUpperCase(Locale.ROOT));
+        labelTitre.setHorizontalTextPosition(JLabel.CENTER);
 
         ArrayList<String> listeInfos = recupInfoFilm(nomFilm);
-        JLabel labelGenre = new JLabel("Genres du film : " + listeInfos.get(0));
+        String genre = listeInfos.get(0);
+        JLabel labelGenre = new JLabel("Genres du film : " + genre);
         JLabel labelPrix = new JLabel("Le prix d'une place est : 9€");
-        JLabel labelDuree = new JLabel("Duree du film : " + listeInfos.get(1));
+
+        int nbHeures = Integer.parseInt(listeInfos.get(1)) / 60;
+        int nbMin = Integer.parseInt(listeInfos.get(1)) % 60;
+        String affDuree = String.valueOf(nbHeures) + "H " + String.valueOf(nbMin) + "min";
+
+        JLabel labelDuree = new JLabel("Duree du film : " + affDuree);
         JLabel labelConseils = new JLabel("Vous pourriez aussi aimé : ");
 
         panelInfos.add(labelTitre);
@@ -59,14 +67,16 @@ public class FramePay extends JFrame {
         panelInfos.add(labelDuree);
         panelInfos.add(labelConseils);
 
-        String[] listeGenre = listeInfos.get(0).split("_");
+        String[] listeGenre = listeInfos.get(0).split(" ");
         ArrayList<String> listeConseil = rechercheGenre(listeGenre[0]);
 
         JPanel panelConseil = new JPanel();
+        panelConseil.setBackground(Color.ORANGE);
+        panelConseil.setLayout(new GridLayout(1, 4));
         //recuperation des jaquettes de films similaires
         if (listeConseil.size() < 4){
             for (String s : listeConseil) {
-                String adresse = "imagesFilms\\" + s + ".jpg";
+                String adresse = "imagesFilms\\" + s;
                 ImageIcon filmConseil = new ImageIcon(imgAdr);
                 JLabel labelFilmConseil = new JLabel(image, JLabel.CENTER);
                 panelConseil.add(labelImage);
@@ -74,7 +84,7 @@ public class FramePay extends JFrame {
         }
         else {
             for (int k = 0; k < 4; k++){
-                String adresse = "imagesFilms\\" + listeConseil.get(k) + ".jpg";
+                String adresse = "imagesFilms\\" + listeConseil.get(k);
                 ImageIcon filmConseil = new ImageIcon(imgAdr);
                 JLabel labelFilmConseil = new JLabel(image, JLabel.CENTER);
                 panelConseil.add(labelImage);
@@ -83,6 +93,9 @@ public class FramePay extends JFrame {
 
         panelInfos.add(panelConseil);
         this.add(panelInfos);
+
+
+
 
 
 
