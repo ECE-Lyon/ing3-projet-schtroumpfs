@@ -69,7 +69,6 @@ public class accueil {
 
     //methode pour ajouter un film dans la bdd
     private static void ajoutFilmBdd(String nom, String type, String date, int duree){
-        //faire deux champs pour la duree et operation pour avoir en min
         //nom de l'image c'est le titre + .jpg
         //type -> concatenation avec espace
     }

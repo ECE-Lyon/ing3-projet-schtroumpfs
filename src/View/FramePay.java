@@ -40,37 +40,52 @@ public class FramePay extends JFrame {
 
         //ajout partie supérieure avec des infos
         JPanel panelInfos = new JPanel();
-        panelInfos.setBounds(150,0,1400,400);
+        panelInfos.setBounds(150,0,250,400);
         panelInfos.setBackground(Color.ORANGE);
-        panelInfos.setLayout(new GridLayout(3,2));
+        panelInfos.setLayout(new GridLayout(3,1));
 
         JLabel labelTitre = new JLabel(nomFilm.toUpperCase(Locale.ROOT));
-        labelTitre.setHorizontalTextPosition(JLabel.CENTER);
 
         ArrayList<String> listeInfos = recupInfoFilm(nomFilm);
         String genre = listeInfos.get(0);
-        JLabel labelGenre = new JLabel("Genres du film : " + genre);
-        JLabel labelPrix = new JLabel("Le prix d'une place est : 9€");
+        String[] listeGenre = genre.split(" ");
+        int nbGenre = listeGenre.length;
+
+        JPanel panelGenre = new JPanel();
+        panelGenre.setBackground(Color.ORANGE);
+        panelGenre.setLayout(new GridLayout(1+nbGenre/2,2));
+        JLabel labelGenre = new JLabel("Genres du film : ");
+        panelGenre.add(labelGenre);
+        for (String s : listeGenre){
+            JLabel g = new JLabel(s);
+            panelGenre.add(g);
+        }
 
         int nbHeures = Integer.parseInt(listeInfos.get(1)) / 60;
         int nbMin = Integer.parseInt(listeInfos.get(1)) % 60;
         String affDuree = nbHeures + "H " + nbMin + "min";
-
         JLabel labelDuree = new JLabel("Duree du film : " + affDuree);
-        JLabel labelConseils = new JLabel("Vous pourriez aussi aimé : ");
 
         panelInfos.add(labelTitre);
-        panelInfos.add(labelPrix);
-        panelInfos.add(labelGenre);
-        panelInfos.add(labelConseils);
+        panelInfos.add(panelGenre);
         panelInfos.add(labelDuree);
+        this.add(panelInfos);
+        //Fin de la partie d'informations
 
-        String[] listeGenre = genre.split(" ");
+
+        //partie conseil
         ArrayList<String> listeConseil = rechercheGenreFctTitre(listeGenre[0], nomFilm.toUpperCase(Locale.ROOT));
+
+        JPanel panelSugg = new JPanel();
+        panelSugg.setBounds(0, 400, 400, 50);
+        panelSugg.setBackground(Color.PINK);
+        panelSugg.add(new JLabel("Vous pourriez aussi aimé: "));
+        this.add(panelSugg);
 
         JPanel panelConseil = new JPanel();
         panelConseil.setBackground(Color.ORANGE);
-        panelConseil.setLayout(new GridLayout(1, 4));
+        panelConseil.setBounds(0, 450, 400, 350);
+        panelConseil.setLayout(new GridLayout(2,2 ));
         //recuperation des jaquettes de films similaires
         if (listeConseil.size() < 4){
             for (String s : listeConseil) {
@@ -88,19 +103,13 @@ public class FramePay extends JFrame {
                 panelConseil.add(labelFilmConseil);
             }
         }
-
-        panelInfos.add(panelConseil);
-        this.add(panelInfos);
-
-        //Fin de la partie d'informations
-
-
+        this.add(panelConseil);
 
         //Partie des séances
         ArrayList<Seance> listeSeances = recupSeances(nomFilm.toUpperCase(Locale.ROOT));
         int nbSeances = listeSeances.size();
         JPanel panelSeances = new JPanel();
-        panelSeances.setBounds(0,400, 1000, 1000);
+        panelSeances.setBounds(400,0, 1200, 700);
         panelSeances.setBackground(Color.RED);
 
         if (nbSeances == 0){
@@ -108,7 +117,7 @@ public class FramePay extends JFrame {
             panelSeances.add(pasSeance);
         }
         else {
-            GridLayout grille = new GridLayout(7, 4);
+            GridLayout grille = new GridLayout(nbSeances, 4);
             panelSeances.setLayout(grille);
 
             ButtonGroup groupe = new ButtonGroup(); //ce groupe de boutons permet de ne pas selectionner plusieurs seances
@@ -136,15 +145,15 @@ public class FramePay extends JFrame {
 
         //partie de la selection du nombre de place et validation
         JLabel demandeNbPlaces = new JLabel("Combien de places voulez vous ?");
-        demandeNbPlaces.setBounds(1000, 400, 200, 20);
-        selectionNbPlaces.setBounds(1205, 400, 150, 20);
-        selectionNbPlaces.setBackground(Color.RED.brighter());
+        demandeNbPlaces.setBounds(400, 700, 300, 100);
+        selectionNbPlaces.setBounds(720, 700, 300, 100);
+        selectionNbPlaces.setBackground(Color.CYAN);
         this.add(demandeNbPlaces);
         this.add(selectionNbPlaces);
 
         ButtonSeance validation = new ButtonSeance();
         validation.setBackground(Color.CYAN);
-        validation.setBounds(1060, 500, 200, 30);
+        validation.setBounds(1050, 700, 300, 100);
         this.add(validation);
 
 
@@ -162,23 +171,13 @@ public class FramePay extends JFrame {
                     if (n < 11 && n > 0) {
                         String prix = String.valueOf(9 * n);
                         JOptionPane.showMessageDialog(ButtonSeance.this, "Veuillez payer " + prix + "€");
-
-
-
                     } else {
                         JOptionPane.showMessageDialog(ButtonSeance.this, "Veuillez saisir un nombre de billets entre 1 et 10");
                     }
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(ButtonSeance.this, "Saisir un nombre SVP");
-
                 }
-
             });
         }
-
-
-
     }
-
-
 }
