@@ -11,9 +11,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.logging.Level;
 
-import static Controleur.recherche.recupInfoFilm;
+import static Controleur.recherche.*;
 import static Controleur.seance.recupSeances;
-import static Controleur.recherche.rechercheGenre;
 
 
 //--------------------------------------------------------------------------------------------------------------
@@ -68,7 +67,7 @@ public class FramePay extends JFrame {
         panelInfos.add(labelConseils);
 
         String[] listeGenre = genre.split(" ");
-        ArrayList<String> listeConseil = rechercheGenre(listeGenre[0]);
+        ArrayList<String> listeConseil = rechercheGenreFctTitre(listeGenre[0], nomFilm.toUpperCase(Locale.ROOT));
 
         JPanel panelConseil = new JPanel();
         panelConseil.setBackground(Color.ORANGE);

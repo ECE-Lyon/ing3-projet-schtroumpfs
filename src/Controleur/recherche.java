@@ -28,11 +28,12 @@ public class recherche {
 
 
     //recherche pour les films sur le genre
-    public static ArrayList<String> rechercheGenre(String genre){
+    public static ArrayList<String> rechercheGenreFctTitre(String genre, String titre){
         ArrayList<String> list = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")){
-            try (PreparedStatement statement = connection.prepareStatement("SELECT IMAGE FROM FILMS WHERE GENRE CONTAINS ?")) {
+            try (PreparedStatement statement = connection.prepareStatement("SELECT IMAGE FROM FILMS WHERE GENRE LIKE ? AND TITRE NOT LIKE ?")) {
                 statement.setString(1, "%" + genre + "%");
+                statement.setString(2, titre);
                 try (ResultSet resultSet = statement.executeQuery()){
                     while (resultSet.next()){
                         String result = resultSet.getString("IMAGE");
