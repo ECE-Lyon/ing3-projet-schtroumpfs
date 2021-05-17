@@ -108,7 +108,8 @@ public class FramePay extends JFrame {
             panelSeances.add(pasSeance);
         }
         else {
-            panelSeances.setLayout(new GridLayout(nbSeances, 4));
+            GridLayout grille = new GridLayout(7, 4);
+            panelSeances.setLayout(grille);
 
             ButtonGroup groupe = new ButtonGroup(); //ce groupe de boutons permet de ne pas selectionner plusieurs seances
 

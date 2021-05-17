@@ -49,7 +49,7 @@ public class accueil {
     }
 
     //methode pour la connection en tant que staff du cinema pour ensuite pouvoir ajouter des films...
-    private static Boolean verifStaff(String id, String password){
+    public static Boolean verifStaff(String id, String password){
         try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")){
             try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM STAFF WHERE PSEUDO LIKE ?")) {
                 statement.setString(1, id);
