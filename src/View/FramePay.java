@@ -4,12 +4,11 @@ import Modele.Seance;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+
+
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.logging.Level;
+
 
 import static Controleur.recherche.*;
 import static Controleur.seance.recupSeances;
@@ -18,8 +17,6 @@ import static Controleur.seance.recupSeances;
 //--------------------------------------------------------------------------------------------------------------
 public class FramePay extends JFrame {
 
-    public static TextField labelSaisiePlaces = new TextField("1");
-    public static JLabel l = new JLabel();
     public static JTextArea selectionNbPlaces = new JTextArea("Nombre de places ?");
 
     public FramePay(String nomFilm) {
@@ -43,7 +40,7 @@ public class FramePay extends JFrame {
 
         //ajout partie supérieure avec des infos
         JPanel panelInfos = new JPanel();
-        panelInfos.setBounds(150,0,1450,400);
+        panelInfos.setBounds(150,0,1400,400);
         panelInfos.setBackground(Color.ORANGE);
         panelInfos.setLayout(new GridLayout(3,2));
 
@@ -57,7 +54,7 @@ public class FramePay extends JFrame {
 
         int nbHeures = Integer.parseInt(listeInfos.get(1)) / 60;
         int nbMin = Integer.parseInt(listeInfos.get(1)) % 60;
-        String affDuree = String.valueOf(nbHeures) + "H " + String.valueOf(nbMin) + "min";
+        String affDuree = nbHeures + "H " + nbMin + "min";
 
         JLabel labelDuree = new JLabel("Duree du film : " + affDuree);
         JLabel labelConseils = new JLabel("Vous pourriez aussi aimé : ");
@@ -116,8 +113,8 @@ public class FramePay extends JFrame {
             ButtonGroup groupe = new ButtonGroup(); //ce groupe de boutons permet de ne pas selectionner plusieurs seances
 
             for (Seance s : listeSeances){
-                JLabel salle = new JLabel(String.valueOf("salle: " + s.getSalle()));
-                JLabel nbPlaces = new JLabel(String.valueOf(s.getNbPlacesLibres()) + " places libres");
+                JLabel salle = new JLabel("salle: " + s.getSalle());
+                JLabel nbPlaces = new JLabel(s.getNbPlacesLibres() + " places libres");
                 JLabel horaire = new JLabel("horaire: " + s.getHoraire());
                 JRadioButton select = new JRadioButton("cette seance me convient");
                 select.setBackground(Color.ORANGE.darker());
@@ -153,30 +150,25 @@ public class FramePay extends JFrame {
     }
 
     //-----------------------------------------------------------------------------------------------------------------
-    public class ButtonSeance extends JButton {
+    public static class ButtonSeance extends JButton {
 
         public ButtonSeance() {
 
             setText("Validation de la sélection");
-            addActionListener(new ActionListener() {
-
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        int n = Integer.parseInt(selectionNbPlaces.getText());
-                        if (n < 11 && n > 0) {
-                            String prix = String.valueOf(9 * n);
-                            JOptionPane.showMessageDialog(ButtonSeance.this, "Veuillez payer " + prix + "€");
+            addActionListener(e -> {
+                try {
+                    int n = Integer.parseInt(selectionNbPlaces.getText());
+                    if (n < 11 && n > 0) {
+                        String prix = String.valueOf(9 * n);
+                        JOptionPane.showMessageDialog(ButtonSeance.this, "Veuillez payer " + prix + "€");
 
 
 
-                        } else {
-                            JOptionPane.showMessageDialog(ButtonSeance.this, "Veuillez saisir un nombre de billets entre 1 et 10");
-                        }
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(ButtonSeance.this, "Saisir un nombre SVP");
-
+                    } else {
+                        JOptionPane.showMessageDialog(ButtonSeance.this, "Veuillez saisir un nombre de billets entre 1 et 10");
                     }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(ButtonSeance.this, "Saisir un nombre SVP");
 
                 }
 

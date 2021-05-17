@@ -87,19 +87,15 @@ public class FrameSign extends JFrame {
 
         public ButtonConnec(String id, String password){
             setText("Se connecter");
-            addActionListener(new ActionListener() {
+            addActionListener(e -> {
+                if(accueil.verifIdentification(FrameSign.loginField.getText(), FrameSign.passwordField.getText())){
+                    FrameFilm f2 = new FrameFilm();
+                    f2.setVisible(true);
+                    MemberCustomers client = accueil.recupFidelite(id, password);
+                }
 
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if(accueil.verifIdentification(FrameSign.loginField.getText(), FrameSign.passwordField.getText())){
-                        FrameFilm f2 = new FrameFilm();
-                        f2.setVisible(true);
-                        MemberCustomers client = accueil.recupFidelite(id, password);
-                    }
-
-                    else{
-                        JOptionPane.showMessageDialog(ButtonConnec.this, "Erreur de mot de passe ou d'identifiant");
-                    }
+                else{
+                    JOptionPane.showMessageDialog(ButtonConnec.this, "Erreur de mot de passe ou d'identifiant");
                 }
             });
         }
