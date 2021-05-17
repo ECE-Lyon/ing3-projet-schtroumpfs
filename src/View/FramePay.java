@@ -27,7 +27,7 @@ public class FramePay extends JFrame {
         //ajout de la jaquete du film
         JPanel panelFilm = new JPanel();
         panelFilm.setBounds(0,0,150,400);
-        panelFilm.setBackground(Color.RED);
+        panelFilm.setBackground(Color.PINK.darker());
 
         String imgAdr = "imagesFilms\\" + nomFilm + ".jpg";
         ImageIcon image = new ImageIcon(imgAdr);
@@ -60,10 +60,10 @@ public class FramePay extends JFrame {
         JLabel labelConseils = new JLabel("Vous pourriez aussi aimé : ");
 
         panelInfos.add(labelTitre);
-        panelInfos.add(labelGenre);
         panelInfos.add(labelPrix);
-        panelInfos.add(labelDuree);
+        panelInfos.add(labelGenre);
         panelInfos.add(labelConseils);
+        panelInfos.add(labelDuree);
 
         String[] listeGenre = genre.split(" ");
         ArrayList<String> listeConseil = rechercheGenreFctTitre(listeGenre[0], nomFilm.toUpperCase(Locale.ROOT));
@@ -101,7 +101,7 @@ public class FramePay extends JFrame {
         int nbSeances = listeSeances.size();
         JPanel panelSeances = new JPanel();
         panelSeances.setBounds(0,400, 1000, 1000);
-        panelSeances.setBackground(Color.ORANGE.darker());
+        panelSeances.setBackground(Color.RED);
 
         if (nbSeances == 0){
             JLabel pasSeance = new JLabel("Désolé aucune séance n'est prévue pour ce film pour le moment");
@@ -117,7 +117,7 @@ public class FramePay extends JFrame {
                 JLabel nbPlaces = new JLabel(s.getNbPlacesLibres() + " places libres");
                 JLabel horaire = new JLabel("horaire: " + s.getHoraire());
                 JRadioButton select = new JRadioButton("cette seance me convient");
-                select.setBackground(Color.ORANGE.darker());
+                select.setBackground(Color.RED);
 
                 groupe.add(select);
 
@@ -143,7 +143,7 @@ public class FramePay extends JFrame {
 
         ButtonSeance validation = new ButtonSeance();
         validation.setBackground(Color.CYAN);
-        validation.setBounds(1060, 500, 100, 30);
+        validation.setBounds(1060, 500, 200, 30);
         this.add(validation);
 
 
