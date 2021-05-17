@@ -37,7 +37,7 @@ class FrameStaff extends JFrame {
         this.add(panel2);
 
         JPanel panel3 = new JPanel();
-        panel3.setBounds(600,313,largeur,60);
+        panel3.setBounds(600,282,largeur,60);
         panel3.setBackground(Color.RED);
         JLabel label3 = new JLabel("Date de sortie : ");
         panel3.add(label3);
@@ -56,7 +56,7 @@ class FrameStaff extends JFrame {
 
 
         JPanel panel5 = new JPanel();
-        panel5.setBounds(600,374,largeur,40);
+        panel5.setBounds(600,342,largeur,40);
         panel5.setBackground(Color.BLACK);
         ButtonAdd bAdd= new ButtonAdd();
         panel5.add(bAdd);
