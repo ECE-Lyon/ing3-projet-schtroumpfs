@@ -9,7 +9,7 @@ public class seance {
     public static ArrayList<Seance> recupSeances(String nomFilm){
         ArrayList<Seance> list = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")){
-            try (PreparedStatement statement = connection.prepareStatement("SELECT SALLE, PLACES, HORAIRE FROM SEANCES JOIN FILMS WHERE TITRE LIKE ?")) {
+            try (PreparedStatement statement = connection.prepareStatement("SELECT SALLE, PLACES, HORAIRE FROM SEANCES JOIN FILMS ON ID_FILMS = ID WHERE TITRE LIKE ?")) {
                 statement.setString(1, nomFilm);
                 try (ResultSet resultSet = statement.executeQuery()){
                     while (resultSet.next()){

@@ -20,7 +20,7 @@ public class FramePay extends JFrame {
 
     public static TextField labelSaisiePlaces = new TextField("1");
     public static JLabel l = new JLabel();
-
+    public static JTextArea selectionNbPlaces = new JTextArea("Nombre de places ?");
 
     public FramePay(String nomFilm) {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -92,6 +92,45 @@ public class FramePay extends JFrame {
 
         panelInfos.add(panelConseil);
         this.add(panelInfos);
+
+        //Fin de la partie d'informations
+
+        //Partie des séances
+        ArrayList<Seance> listeSeances = recupSeances(nomFilm.toUpperCase(Locale.ROOT));
+        int nbSeances = listeSeances.size();
+
+        JPanel panelSeances = new JPanel();
+        panelSeances.setLayout(new GridLayout(nbSeances, 4));
+        panelSeances.setBackground(Color.ORANGE.darker());
+        panelSeances.setBounds(0,400, 1000, 1000);
+
+        for (Seance s : listeSeances){
+            JLabel salle = new JLabel(String.valueOf("salle: " + s.getSalle()));
+            JLabel nbPlaces = new JLabel(String.valueOf(s.getNbPlacesLibres()) + " places libres");
+            JLabel horaire = new JLabel("horaire: " + s.getHoraire());
+            JRadioButton select = new JRadioButton("cette seance me convient");
+            select.setBackground(Color.ORANGE.darker());
+
+            panelSeances.add(salle);
+            panelSeances.add(nbPlaces);
+            panelSeances.add(horaire);
+            panelSeances.add(select);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        this.add(panelSeances);
 
 
 
