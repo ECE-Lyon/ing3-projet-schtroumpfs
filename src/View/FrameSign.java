@@ -122,7 +122,7 @@ public class FrameSign extends JFrame {
                 if(accueil.verifIdentification(FrameSign.loginField.getText(), FrameSign.passwordField.getText())){
                     FrameFilm f2 = new FrameFilm();
                     f2.setVisible(true);
-                    MemberCustomers client = accueil.recupFidelite(id, password);
+                    MemberCustomers client = accueil.recupFidelite(id);
                 }
 
                 else{
@@ -139,13 +139,9 @@ public class FrameSign extends JFrame {
 
         public ButtonSans(){
             setText("Continuer sans se connecter");
-            addActionListener(new ActionListener() {
-
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    FrameFilm f2 = new FrameFilm();
-                    f2.setVisible(true);
-                }
+            addActionListener(e -> {
+                FrameFilm f2 = new FrameFilm();
+                f2.setVisible(true);
             });
         }
     }
@@ -161,7 +157,11 @@ public class FrameSign extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")) {
                     try (Statement statement = connection.createStatement()) {
-                        int resultSet = statement.executeUpdate("INSERT INTO CLIENTS VALUES (pseudo, mdp, fidelite)");
+                        PreparedStatement prestatement = connection.prepareStatement("INSERT INTO CLIENTS VALUES (?, ?, ?)");
+                        prestatement.setString(1, pseudo);
+                        prestatement.setString(2, mdp);
+                        prestatement.setString(3, fidelite);
+                        int result = statement.executeUpdate(String.valueOf(prestatement));
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
@@ -172,8 +172,6 @@ public class FrameSign extends JFrame {
                 FrameFilm f2 = new FrameFilm();
                 f2.setVisible(true);
             }
-
-            ;
         });
     }
 }
@@ -183,16 +181,12 @@ public class FrameSign extends JFrame {
     public static class ButtonStaff extends JButton {
         public ButtonStaff() {
             setText("Connection du Staff");
-            addActionListener(new ActionListener() {
-
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (accueil.verifStaff(FrameSign.staffID.getText(), FrameSign.staffMDP.getText())) {
-                        FrameStaff f3 = new FrameStaff();
-                        f3.setVisible(true);
-                    } else {
-                        JOptionPane.showMessageDialog(ButtonStaff.this, "Erreur de mot de passe ou d'identifiant");
-                    }
+            addActionListener(e -> {
+                if (accueil.verifStaff(FrameSign.staffID.getText(), FrameSign.staffMDP.getText())) {
+                    FrameStaff f3 = new FrameStaff();
+                    f3.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(ButtonStaff.this, "Erreur de mot de passe ou d'identifiant");
                 }
             }
             );

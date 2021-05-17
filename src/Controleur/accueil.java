@@ -3,7 +3,6 @@ package Controleur;
 import Modele.MemberCustomers;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 public class accueil {
 
@@ -28,7 +27,7 @@ public class accueil {
     }
 
     //methode qui permettra de gerer la fidelite d'un client
-    public static MemberCustomers recupFidelite(String id, String password){
+    public static MemberCustomers recupFidelite(String id){
         MemberCustomers.MemberType type = null;
         try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")){
             try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM CLIENTS WHERE PSEUDO LIKE ?")) {

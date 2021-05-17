@@ -56,15 +56,11 @@ public class FrameFilm extends JFrame {
 
         public ButtonFilm(String nomFilm){
             setText(nomFilm);
-            addActionListener(new ActionListener() {
+            addActionListener(e -> {
+                String film = e.getActionCommand();
+                FramePay f3 = new FramePay(film);
+                f3.setVisible(true);
 
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    String film = e.getActionCommand();
-                    FramePay f3 = new FramePay(film);
-                    f3.setVisible(true);
-
-                }
             });
 
         }
