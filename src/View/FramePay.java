@@ -39,6 +39,8 @@ public class FramePay extends JFrame {
         this.add(panelFilm);
         //fin
 
+
+
         //ajout partie supérieure avec des infos
         JPanel panelInfos = new JPanel();
         panelInfos.setBounds(150,0,1450,400);
@@ -95,110 +97,58 @@ public class FramePay extends JFrame {
 
         //Fin de la partie d'informations
 
+
+
         //Partie des séances
         ArrayList<Seance> listeSeances = recupSeances(nomFilm.toUpperCase(Locale.ROOT));
         int nbSeances = listeSeances.size();
-
         JPanel panelSeances = new JPanel();
-        panelSeances.setLayout(new GridLayout(nbSeances, 4));
-        panelSeances.setBackground(Color.ORANGE.darker());
         panelSeances.setBounds(0,400, 1000, 1000);
+        panelSeances.setBackground(Color.ORANGE.darker());
 
-        for (Seance s : listeSeances){
-            JLabel salle = new JLabel(String.valueOf("salle: " + s.getSalle()));
-            JLabel nbPlaces = new JLabel(String.valueOf(s.getNbPlacesLibres()) + " places libres");
-            JLabel horaire = new JLabel("horaire: " + s.getHoraire());
-            JRadioButton select = new JRadioButton("cette seance me convient");
-            select.setBackground(Color.ORANGE.darker());
+        if (nbSeances == 0){
+            JLabel pasSeance = new JLabel("Désolé aucune séance n'est prévue pour ce film pour le moment");
+            panelSeances.add(pasSeance);
+        }
+        else {
+            panelSeances.setLayout(new GridLayout(nbSeances, 4));
 
-            panelSeances.add(salle);
-            panelSeances.add(nbPlaces);
-            panelSeances.add(horaire);
-            panelSeances.add(select);
+            ButtonGroup groupe = new ButtonGroup(); //ce groupe de boutons permet de ne pas selectionner plusieurs seances
+
+            for (Seance s : listeSeances){
+                JLabel salle = new JLabel(String.valueOf("salle: " + s.getSalle()));
+                JLabel nbPlaces = new JLabel(String.valueOf(s.getNbPlacesLibres()) + " places libres");
+                JLabel horaire = new JLabel("horaire: " + s.getHoraire());
+                JRadioButton select = new JRadioButton("cette seance me convient");
+                select.setBackground(Color.ORANGE.darker());
+
+                groupe.add(select);
+
+                panelSeances.add(salle);
+                panelSeances.add(nbPlaces);
+                panelSeances.add(horaire);
+                panelSeances.add(select);
+            }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         this.add(panelSeances);
+        //Fin partie des seances
 
 
 
+        //partie de la selection du nombre de place et validation
+        JLabel demandeNbPlaces = new JLabel("Combien de places voulez vous ?");
+        demandeNbPlaces.setBounds(1000, 400, 200, 20);
+        selectionNbPlaces.setBounds(1205, 400, 150, 20);
+        selectionNbPlaces.setBackground(Color.RED.brighter());
+        this.add(demandeNbPlaces);
+        this.add(selectionNbPlaces);
 
+        ButtonSeance validation = new ButtonSeance();
+        validation.setBackground(Color.CYAN);
+        validation.setBounds(1060, 500, 100, 30);
+        this.add(validation);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        ArrayList<Seance> listeSeances = recupSeances(nomFilm);
-//        JPanel panelSean = new JPanel();
-//        panelSean.setBounds(150,0,1600,400);
-//        panelSean.setBackground(Color.orange);
-//
-//        //ajjout de la jaquete du film
-//        JPanel panelIm = new JPanel();
-//        panelIm.setBounds(0,0,150,400);
-//        panelIm.setBackground(Color.RED);
-//
-//        String imgAdr = "imagesFilms\\" + nomFilm + ".jpg";
-//        ImageIcon image = new ImageIcon(imgAdr);
-//        JLabel labelImage = new JLabel(image, JLabel.CENTER);
-//        panelIm.add(labelImage);
-//        this.add(panelIm);
-//        //fin ajout
-//
-//        panelSean.add(new JLabel("Une séance coûte 9€"));
-//        JLabel label1 = new JLabel("Séances disponibles : ");
-//        panelSean.add(label1);
-//        ButtonGroup group = new ButtonGroup();
-//        for (Seance seanceK : listeSeances){
-//
-//        }
-//        JRadioButton s = new JRadioButton("18h00 (13 places)");
-//        JRadioButton b = new JRadioButton("20h00 (complet)");
-//        JRadioButton t = new JRadioButton("22h00 (2 places)");
-//        group.add(s);
-//        panelSean.add(s);
-//        group.add(b);
-//        panelSean.add(b);
-//        group.add(t);
-//        panelSean.add(t);
-//        this.add(panelSean);
-//
-//
-//        JPanel panelNb = new JPanel();
-//        panelNb.setBounds(500,450,500,40);
-//        panelNb.setBackground(Color.orange);
-//        JLabel labelPlace = new JLabel("Saisir nombre de place(s) voulue(s) : ");
-//        panelNb.add(labelPlace);
-//        panelNb.add(labelSaisiePlaces);
-//        ButtonSeance bouton = new ButtonSeance();
-//        panelNb.add(bouton);
-//        panelNb.add(l);
-//        this.add(panelNb);
 
     }
 
@@ -207,18 +157,16 @@ public class FramePay extends JFrame {
 
         public ButtonSeance() {
 
-            setText("Choix séance");
+            setText("Validation de la sélection");
             addActionListener(new ActionListener() {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        Integer n = Integer.parseInt(labelSaisiePlaces.getText());
+                        int n = Integer.parseInt(selectionNbPlaces.getText());
                         if (n < 11 && n > 0) {
-                            l.setText("Prix à payer :");
-
-
-
+                            String prix = String.valueOf(9 * n);
+                            JOptionPane.showMessageDialog(ButtonSeance.this, "Veuillez payer " + prix + "€");
 
 
 
