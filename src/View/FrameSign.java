@@ -63,6 +63,7 @@ public class FrameSign extends JFrame {
         panelBouton.add(sans);
         this.add(panelBouton);
 
+
         //partie pour se creer un compte
         JPanel panelNew = new JPanel();
         panelNew.setLayout(new GridLayout(5,2));
@@ -84,6 +85,8 @@ public class FrameSign extends JFrame {
         this.add(panelNew);
 
         //FIN partie client
+
+
 
         //partie staff connection (pas de creation de compte de staff)
         JPanel panelTitre = new JPanel();
@@ -109,9 +112,11 @@ public class FrameSign extends JFrame {
         staffConnect.setBounds(1000, 500, 300, 50);
         this.add(staffConnect);
 
+        //fin partie staff
     }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
+//Creation des boutons
 
     //bouton pour verifier la connexion (test id et password)
     public static class ButtonConnec extends JButton {
@@ -148,6 +153,7 @@ public class FrameSign extends JFrame {
 
 
 //------------------------------------------------------------------------------------------------------------------------------------
+    //bouton pour creer un nouveau compte
     public static class ButtonNew extends JButton {
     public ButtonNew(String pseudo, String mdp, String fidelite) {
         setText("Créer un nouveau compte");
@@ -177,7 +183,7 @@ public class FrameSign extends JFrame {
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------
-//verification de la connection du staff
+    //verification de la connection du staff
     public static class ButtonStaff extends JButton {
         public ButtonStaff() {
             setText("Connection du Staff");

@@ -9,6 +9,7 @@ class FrameStaff extends JFrame {
     public static final int largeur=300;
     public static JTextField t4=new JTextField("           ");
 
+    //frame qui permet d'ajouter un nouveau film
     public FrameStaff(){
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -17,7 +18,7 @@ class FrameStaff extends JFrame {
         this.setSize(1200, 800);
         this.setLayout(null);
 
-
+        //demande du nom de film
         JPanel panel1 = new JPanel();
         panel1.setBounds(600,100,largeur,60);
         panel1.setBackground(Color.RED);
@@ -27,6 +28,7 @@ class FrameStaff extends JFrame {
         panel1.add(t1);
         this.add(panel1);
 
+        //demande de la duree
         JPanel panel2 = new JPanel();
         panel2.setBounds(600,161,largeur,60);
         panel2.setBackground(Color.RED);
@@ -36,6 +38,7 @@ class FrameStaff extends JFrame {
         panel2.add(t2);
         this.add(panel2);
 
+        //demande de la date de sortie
         JPanel panel3 = new JPanel();
         panel3.setBounds(600,282,largeur,60);
         panel3.setBackground(Color.RED);
@@ -45,6 +48,7 @@ class FrameStaff extends JFrame {
         panel3.add(t3);
         this.add(panel3);
 
+        //demande des genres
         JPanel panel4 = new JPanel();
         panel4.setBounds(600,222,largeur,60);
         panel4.setBackground(Color.RED);
@@ -53,8 +57,7 @@ class FrameStaff extends JFrame {
         panel4.add(t4);
         this.add(panel4);
 
-
-
+        //ajout du bouton de fin d'ajout
         JPanel panel5 = new JPanel();
         panel5.setBounds(600,342,largeur,40);
         panel5.setBackground(Color.BLACK);
@@ -82,6 +85,7 @@ class FrameStaff extends JFrame {
                 }
                 if (test){
                     JOptionPane.showMessageDialog(ButtonAdd.this, "Film ajouté");
+                    //il manque juste ajoutFilmBdd de la partie controleur accueil (non code)
                 }
             });
         }

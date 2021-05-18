@@ -73,7 +73,7 @@ public class FramePay extends JFrame {
         //Fin de la partie d'informations
 
 
-        //partie conseil
+        //Ajout de la partie conseil
         ArrayList<String> listeConseil = rechercheGenreFctTitre(listeGenre[0], nomFilm.toUpperCase(Locale.ROOT));
 
         JPanel panelSugg = new JPanel();
@@ -104,6 +104,10 @@ public class FramePay extends JFrame {
             }
         }
         this.add(panelConseil);
+
+        //fin des conseils
+
+
 
         //Partie des séances
         ArrayList<Seance> listeSeances = recupSeances(nomFilm.toUpperCase(Locale.ROOT));
@@ -159,12 +163,13 @@ public class FramePay extends JFrame {
 
     }
 
-    //-----------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------
+    //creation du bouton de validation qui affiche le prix a payer ou bien une correction a faire sur le nombre de places
     public static class ButtonSeance extends JButton {
 
         public ButtonSeance() {
-
             setText("Validation de la sélection");
+
             addActionListener(e -> {
                 try {
                     int n = Integer.parseInt(selectionNbPlaces.getText());

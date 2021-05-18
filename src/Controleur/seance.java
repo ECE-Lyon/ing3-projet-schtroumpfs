@@ -6,6 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class seance {
+
+    //methode de recuperation des seances pour un film donné
     public static ArrayList<Seance> recupSeances(String nomFilm){
         ArrayList<Seance> list = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")){
@@ -17,7 +19,6 @@ public class seance {
                         list.add(seance);
                     }
                 }
-
             }
         } catch (SQLException exception) {
             System.out.println("IL Y A EU UNE ERREUR");

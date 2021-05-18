@@ -17,7 +17,6 @@ public class recherche {
                         list.add(result);
                     }
                 }
-
             }
         } catch (SQLException exception) {
             System.out.println("IL Y A EU UNE ERREUR");
@@ -40,7 +39,6 @@ public class recherche {
                         list.add(result);
                     }
                 }
-
             }
         } catch (SQLException exception) {
             System.out.println("IL Y A EU UNE ERREUR");
@@ -50,6 +48,7 @@ public class recherche {
     }
 
     //recherche pour les films sur la duree
+    //methode inutilisée mais prete pour amelioration de l'appli
     public static ArrayList<String> rechercheDuree(int time){
         ArrayList<String> list = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection("jdbc:h2:./default")){
@@ -61,7 +60,6 @@ public class recherche {
                         list.add(result);
                     }
                 }
-
             }
         } catch (SQLException exception) {
             System.out.println("IL Y A EU UNE ERREUR");
